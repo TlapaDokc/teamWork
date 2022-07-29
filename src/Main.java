@@ -27,13 +27,24 @@ public class Main {
             } else if (input.equals("end")) {
                 System.out.print("Корзина: ");
                 double sum = 0;
+                double sumDiscount;
                 for (int i = 0; i < prod.length; i++) {
                     if (prod[i] != 0) {
-                        System.out.println(products[i] + " " + prod[i] + " шт.   " +
-                                dF.format(prices[i]) + " руб/шт. " + " цена за всё " +
-                                dF.format(prod[i] * prices[i]) + " руб.");
+                        if (prod[i] == 3 || prod[i] == 4 && (prices[i] / 3) == 0) {
+                            sumDiscount = ((prod[i] - prod[i] % 3) * prices[i] * 2) / 3 + prod[i] % 3 * prices[i];
+                            System.out.println("Товар по акции 3 по цене 2 ");
+                            System.out.println(products[i] + " " + prod[i] + " шт.   " +
+                                    dF.format(prices[i]) + " руб/шт. " + " цена по акции " +
+                                    dF.format(sumDiscount) + " руб.");
+                            sum += sumDiscount;
+                        }else {
+                            System.out.println(products[i] + " " + prod[i] + " шт.   " +
+                                    dF.format(prices[i]) + " руб/шт. " + " цена за всё " +
+                                    dF.format(prod[i] * prices[i]) + " руб.");
+                            sum += prod[i] * prices[i];
+                        }
                     }
-                    sum += prod[i] * prices[i];
+
                 }
                 if (sum == 0) {
                     System.out.println("пуста.");
