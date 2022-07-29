@@ -21,11 +21,11 @@ public class Main {
             String input = scan.nextLine();
 
             if (input.equals("end") && cnt == 0) {
-                System.out.println("Корзина пуста.");
+                System.out.println("Корзина: пуста.");
                 System.out.println("Программа завершена.");
                 break;
             } else if (input.equals("end")) {
-                System.out.println("Корзина: ");
+                System.out.print("Корзина: ");
                 double sum = 0;
                 for (int i = 0; i < prod.length; i++) {
                     if (prod[i] != 0) {
@@ -35,7 +35,11 @@ public class Main {
                     }
                     sum += prod[i] * prices[i];
                 }
-                System.out.println("Итог: " + dF.format(sum) + " руб.");
+                if (sum == 0) {
+                    System.out.println("пуста.");
+                } else {
+                    System.out.println("Итог: " + dF.format(sum) + " руб.");
+                }
                 System.out.println("Программа завершена.");
                 break;
             }
@@ -57,11 +61,23 @@ public class Main {
 
                 int amount = (Integer.parseInt(inAmount[1]));
 
-                if (amount <= 0) {
-                    System.out.println("НЕ ВЕРНО. Количество не может быть меньше 1 шт. ");
-                    System.out.println("Вы ввели " + amount);
+                if (amount < 0) {
+                    prod[productNumb] += amount;
+                    if (prod[productNumb] >= 0) {
+                        continue;
+                    } else {
+                        prod[productNumb] -= amount;
+                        System.out.println("НЕ ВЕРНО. Количество не может быть меньше 1 шт. ");
+                        System.out.println("Вы ввели " + amount);
+                        continue;
+                    }
+                }
+
+                if (amount == 0) {
+                    prod[productNumb] = 0;
                     continue;
                 }
+
                 prod[productNumb] += amount;
 
             } catch (NumberFormatException e) {
