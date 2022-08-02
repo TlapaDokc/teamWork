@@ -35,7 +35,7 @@ public class Main {
             } else if (input.equals("end")) {
                 System.out.print("Корзина: ");
                 double sum = 0;
-                double sumDiscount;
+                double sumSale;
                 for (int i = 0; i < prod.length; i++) {
                     if (prod[i] != 0) {
                         for (int l = 0; l < productsSale.length; l++) {
