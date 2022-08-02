@@ -30,21 +30,24 @@ public class Main {
                 double sumDiscount;
                 for (int i = 0; i < prod.length; i++) {
                     if (prod[i] != 0) {
-                        if (prod[i] == 3 || prod[i] == 4 && (prices[i] / 3) == 0) {
-                            sumDiscount = ((prod[i] - prod[i] % 3) * prices[i] * 2) / 3 + prod[i] % 3 * prices[i];
-                            System.out.println("Товар по акции 3 по цене 2 ");
-                            System.out.println(products[i] + " " + prod[i] + " шт.   " +
-                                    dF.format(prices[i]) + " руб/шт. " + " цена по акции " +
-                                    dF.format(sumDiscount) + " руб.");
-                            sum += sumDiscount;
-                        }else {
+                        for (int l = 0; l < productsSale.length; l++) {
+                            if (products[i].equals(productsSale[l])) {
+                                sale = true;
+                                sumSale = ((prod[i] - prod[i] % 3) * prices[i] * 2) / 3 + prod[i] % 3 * prices[i];
+                                System.out.println("Товар по акции 3 по цене 2 ");
+                                System.out.println(products[i] + " " + prod[i] + " шт.   " +
+                                        dF.format(prices[i]) + " руб/шт. " + " цена по акции " +
+                                        dF.format(sumSale) + " руб.");
+                                sum += sumSale;
+                            }
+                        }
+                        if (!sale) {
                             System.out.println(products[i] + " " + prod[i] + " шт.   " +
                                     dF.format(prices[i]) + " руб/шт. " + " цена за всё " +
                                     dF.format(prod[i] * prices[i]) + " руб.");
                             sum += prod[i] * prices[i];
                         }
                     }
-
                 }
                 if (sum == 0) {
                     System.out.println("пуста.");
