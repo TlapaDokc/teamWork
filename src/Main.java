@@ -6,7 +6,9 @@ public class Main {
         Scanner scan = new Scanner(System.in);
         String[] products = {"Хлеб", "Творог", "Кефир", "Колбаса", "Пельмени"};
         double[] prices = {67.90, 76.60, 45.50, 356.20, 220.80};
+        String[] productsSale = {"Кефир", "Колбаса"};
         DecimalFormat dF = new DecimalFormat("0.00");
+        boolean sale = false;
         System.out.println("Список товара: ");
 
         int[] prod = new int[products.length];
@@ -15,6 +17,12 @@ public class Main {
             System.out.println((i + 1) + " " + products[i] + " " +
                     dF.format(prices[i]) + " руб/шт.");
         }
+
+        System.out.println("Товар по акции 3 по цене 2 ");
+        for (int i = 0; i < productsSale.length; i++) {
+            System.out.println(productsSale[i]);
+        }
+
         while (true) {
             System.out.println("Введите номер товара и количество через пробел.");
             System.out.println("Для завершения введите end ");
